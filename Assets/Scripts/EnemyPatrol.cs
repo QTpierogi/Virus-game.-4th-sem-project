@@ -8,7 +8,6 @@ public class EnemyPatrol : MonoBehaviour
     public int positionOfPatrol;
     public Transform point;
     bool movingRight;
-    private bool faceRight = true;
 
     Transform player;
     public float stoppingDistance;
@@ -56,6 +55,20 @@ public class EnemyPatrol : MonoBehaviour
         }
     }
 
+    void Flip()
+    {
+        //faceRight = !faceRight;
+        //transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        //transform.localRotation = Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y, -transform.localEulerAngles.z);
+
+        if (movingRight == true)
+            transform.eulerAngles = new Vector3(0, -180, 0);
+        else
+            transform.eulerAngles = new Vector3(0, 0, 0);
+    }
+
+
+
     void Chill()
     {
         if(transform.position.x > point.position.x + positionOfPatrol)
@@ -83,11 +96,22 @@ public class EnemyPatrol : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         speed = 3;
+        if (transform.position.x > player.position.x)
+        {
+            movingRight = false;
+            Flip();
+        }
+        else if (transform.position.x < player.position.x)
+        {
+            movingRight = true;
+            Flip();
+        }
     }
 
     void GoBack()
     {
         transform.position = Vector2.MoveTowards(transform.position, point.position, speed * Time.deltaTime);
+        Flip();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -98,10 +122,4 @@ public class EnemyPatrol : MonoBehaviour
         }
     }
 
-    void Flip()
-    {
-        faceRight = !faceRight;
-        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        transform.localRotation = Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y, -transform.localEulerAngles.z);
-    }
 }
