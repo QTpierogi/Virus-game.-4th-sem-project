@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,8 +25,19 @@ public class PlayerMovement : MonoBehaviour
     private float dashCooldownTime = 0;
     private float direction;
 
+    //new 
+    //flip
+    private bool faceRight = true;
+
+    //for interaction with enemies
+    public static PlayerMovement Instance { get; set; }
+
     void Start()
     {
+        //new
+        //for interaction with enemies
+        Instance = this;
+
         virus_body = GetComponent<Rigidbody2D>();
         extraJumps = extraJumpsValue;
     }
@@ -38,6 +50,22 @@ public class PlayerMovement : MonoBehaviour
             direction = 1;
         else direction = -1;
         virus_body.velocity = movement;
+
+        //new 
+        //flip
+        if (deltaX > 0 && !faceRight)
+            Flip();
+        else if (deltaX < 0 && faceRight)
+            Flip();
+
+    }
+
+    //new
+    void Flip()
+    {
+        faceRight = !faceRight;
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        transform.localRotation = Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y, -transform.localEulerAngles.z);
     }
 
     void Update()
@@ -77,4 +105,44 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
             isJumping = false;
     }
+
+    // new
+    // HP level
+    //[SerializeField] private int lives = 5;
+
+
+    //public virtual void Die()
+    //{
+    //    Destroy(this.gameObject);
+    //    EndGame();
+    //}
+
+    //public void GetDamage()
+    //{
+    //    lives -= 1;
+    //    Debug.Log(lives);
+    //    Health.UpdateHealth();
+    //}
+
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject == Instance.gameObject)
+    //    {
+    //        Instance.GetDamage();
+    //        lives--;
+    //        Debug.Log("Player's HP: " + lives);
+    //    }
+    //    if (lives < 1)
+    //    {
+    //        Die();
+    //    }
+    //}
+
+    //void EndGame()
+    //{ 
+    //    if (lives == 0)
+    //    {
+    //        SceneManager.LoadScene(1);
+    //    }
+    //}
 }
