@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPatrol : MonoBehaviour
+public class EnemyPatrol : Enemy
 {
     public float speed;
+    public float currentSpeed;
     public int positionOfPatrol;
     public Transform point;
     bool movingRight;
+    private bool faceRight = true;
 
     Transform player;
     public float stoppingDistance;
@@ -16,13 +18,23 @@ public class EnemyPatrol : MonoBehaviour
     bool angry = false;
     bool goBack = false;
 
-    void Start()
+    protected override void Awake()
     {
+        base.Awake();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        health = 4;
+        currentSpeed = speed;
     }
 
-    void Update()
+    protected override void Update()
     {
+        if (dazeTime <= 0)
+            currentSpeed = speed;
+        else{
+            currentSpeed = 0;
+            dazeTime -= Time.deltaTime;
+        }
+
         if (Vector2.Distance(transform.position, point.position) < positionOfPatrol && (angry == false))
         {
             chill = true;
@@ -55,20 +67,6 @@ public class EnemyPatrol : MonoBehaviour
         }
     }
 
-    void Flip()
-    {
-        //faceRight = !faceRight;
-        //transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        //transform.localRotation = Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y, -transform.localEulerAngles.z);
-
-        if (movingRight == true)
-            transform.eulerAngles = new Vector3(0, -180, 0);
-        else
-            transform.eulerAngles = new Vector3(0, 0, 0);
-    }
-
-
-
     void Chill()
     {
         if(transform.position.x > point.position.x + positionOfPatrol)
@@ -84,18 +82,18 @@ public class EnemyPatrol : MonoBehaviour
 
         if (movingRight)
         {
-            transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
+            transform.position = new Vector2(transform.position.x + currentSpeed * Time.deltaTime, transform.position.y);
         }
         else
         {
-            transform.position = new Vector2(transform.position.x - speed * Time.deltaTime, transform.position.y);
+            transform.position = new Vector2(transform.position.x - currentSpeed * Time.deltaTime, transform.position.y);
         }
     }
 
     void GetAngry()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-        speed = 3;
+        transform.position = Vector2.MoveTowards(transform.position, player.position, currentSpeed * Time.deltaTime);
+        currentSpeed = 3;
         if (transform.position.x > player.position.x)
         {
             movingRight = false;
@@ -110,16 +108,19 @@ public class EnemyPatrol : MonoBehaviour
 
     void GoBack()
     {
-        transform.position = Vector2.MoveTowards(transform.position, point.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, point.position, currentSpeed * Time.deltaTime);
         Flip();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == PlayerMovement.Instance.gameObject)
-        {
-            Health.Instance.GetDamage();
-        }
+        base.OnCollisionEnter2D(collision);
     }
 
+    void Flip()
+    {
+        faceRight = !faceRight;
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        transform.localRotation = Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y, -transform.localEulerAngles.z);
+    }
 }

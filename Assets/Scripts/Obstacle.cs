@@ -2,25 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Obstacle : Enemy
 {
-    [SerializeField] private int lives = 3;
-
-    public virtual void Die()
+    protected override void Awake()
     {
-        Destroy(this.gameObject);
+        base.Awake();
+        health = 2;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == Health.Instance.gameObject)
+        base.OnCollisionEnter2D(collision);
+        if (collision.gameObject.tag == "Player")
         {
-            Health.Instance.GetDamage();
-            lives--;
-            Debug.Log("Obstacle's HP: " + lives);
-        }
-        if (lives < 1)
-        {
-            Die();
+            GetDamage(1);
         }
     }
 }
