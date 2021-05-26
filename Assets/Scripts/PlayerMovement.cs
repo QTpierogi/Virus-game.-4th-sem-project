@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         float deltaX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         Vector2 movement = new Vector2(deltaX, virus_body.velocity.y);
         virus_body.velocity = movement;
-        if (deltaX >= 0 && !faceRight)
+        if (deltaX > 0 && !faceRight)
             Flip();
         else if (deltaX < 0 && faceRight)
             Flip();
