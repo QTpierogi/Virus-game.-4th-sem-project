@@ -85,7 +85,7 @@ public class Health : MonoBehaviour
     {
         if (lives == 0)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
     }
 }

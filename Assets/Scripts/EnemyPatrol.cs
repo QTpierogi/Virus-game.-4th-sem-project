@@ -119,8 +119,9 @@ public class EnemyPatrol : Enemy
 
     void Flip()
     {
-        faceRight = !faceRight;
-        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        transform.localRotation = Quaternion.Euler(transform.localEulerAngles.x, transform.localEulerAngles.y, -transform.localEulerAngles.z);
+        if (movingRight == true)
+            transform.eulerAngles = new Vector3(0, -180, 0);
+        else
+            transform.eulerAngles = new Vector3(0, 0, 0);
     }
 }
