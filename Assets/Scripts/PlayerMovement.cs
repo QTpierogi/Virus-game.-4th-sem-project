@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 300.0f;
     public float jumpForce = 1.0f;
     private float jumpTimeCounter;
-    public float jumpTime = 0.25f;
+    public float jumpTime = 0.2f;
     public int extraJumpsValue = 2;
     private int extraJumps;
     public Transform feetPos;
@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool faceRight = true;
 
+    private Animator dashAnimator;
+
     //for interaction with enemies
     public static PlayerMovement Instance { get; set; }
 
@@ -35,6 +37,10 @@ public class PlayerMovement : MonoBehaviour
         Instance = this;
         virus_body = GetComponent<Rigidbody2D>();
         virus_box = GetComponent<BoxCollider2D>();
+        var animators = GetComponentsInChildren<Animator>();
+        foreach (Animator animator in animators)
+            if (animator.gameObject.CompareTag("DashEffect"))
+                dashAnimator = animator;
         extraJumps = extraJumpsValue;
     }
 
@@ -43,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         float deltaX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         Vector2 movement = new Vector2(deltaX, virus_body.velocity.y);
         virus_body.velocity = movement;
-        if (deltaX >= 0 && !faceRight)
+        if (deltaX > 0 && !faceRight)
             Flip();
         else if (deltaX < 0 && faceRight)
             Flip();
@@ -120,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
         virus_box.enabled = true;
         if (canDash)
         {
+            dashAnimator.SetTrigger("PlayerDash");
             transform.position += dashDir * distanceToDash;
             return true;
         }
