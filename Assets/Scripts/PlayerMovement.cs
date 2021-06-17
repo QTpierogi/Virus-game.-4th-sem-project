@@ -173,12 +173,4 @@ public class PlayerMovement : MonoBehaviour
     //        Die();
     //    }
     //}
-
-    //void EndGame()
-    //{ 
-    //    if (lives == 0)
-    //    {
-    //        SceneManager.LoadScene(1);
-    //    }
-    //}
 }

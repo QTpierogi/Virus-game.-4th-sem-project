@@ -64,7 +64,7 @@ public class Health : MonoBehaviour
     public virtual void Die()
     {
         Destroy(this.gameObject);
-        EndGame();
+        SceneManager.LoadScene(2);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -72,20 +72,10 @@ public class Health : MonoBehaviour
         if (collision.gameObject == PlayerMovement.Instance.gameObject)
         {
             GetDamage();
-            lives--;
-            Debug.Log("Player's HP: " + lives);
         }
         if (lives < 1)
         {
             Die();
-        }
-    }
-
-    void EndGame()
-    {
-        if (lives == 0)
-        {
-            SceneManager.LoadScene(2);
         }
     }
 }
