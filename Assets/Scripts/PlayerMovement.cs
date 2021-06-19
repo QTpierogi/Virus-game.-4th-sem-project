@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D virus_box;
 
     private bool jumpedOnce = false;
-    private bool isJumping = false;
+    public bool isJumping = false;
 
     public float dashDistance;
     public float dashCooldownValue = 1.0f;
@@ -31,6 +31,9 @@ public class PlayerMovement : MonoBehaviour
 
     //for interaction with enemies
     public static PlayerMovement Instance { get; set; }
+
+    //for sfx
+    public AudioClip dashAudio;
 
     void Start()
     {
@@ -135,42 +138,13 @@ public class PlayerMovement : MonoBehaviour
     private void HandleDash()
     {
         if (Input.GetKeyDown(KeyCode.Space) && dashCooldownTime <= 0)
-            if (TryDash(faceRight, dashDistance))
+            if (TryDash(faceRight, dashDistance)) 
+            {
                 dashCooldownTime = dashCooldownValue;
+                AudioManager.instance.PlaySound(dashAudio, transform.position);
+            }
 
         if (dashCooldownTime > 0)
             dashCooldownTime -= Time.deltaTime;
     }
-
-    // new
-    // HP level
-    //[SerializeField] private int lives = 5;
-
-
-    //public virtual void Die()
-    //{
-    //    Destroy(this.gameObject);
-    //    EndGame();
-    //}
-
-    //public void GetDamage()
-    //{
-    //    lives -= 1;
-    //    Debug.Log(lives);
-    //    Health.UpdateHealth();
-    //}
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject == Instance.gameObject)
-    //    {
-    //        Instance.GetDamage();
-    //        lives--;
-    //        Debug.Log("Player's HP: " + lives);
-    //    }
-    //    if (lives < 1)
-    //    {
-    //        Die();
-    //    }
-    //}
 }

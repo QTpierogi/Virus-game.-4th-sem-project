@@ -6,21 +6,50 @@ using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
-	public AudioClip mainTheme;
 	public AudioClip menuTheme;
+	public AudioClip mainTheme;
+	public AudioClip deathTheme;
 
-	void Start() 
+	string sceneName;
+
+	void Start()
 	{
-		AudioManager.instance.PlayMusic (menuTheme, 2);
+		OnLevelWasLoaded(SceneManager.GetActiveScene().buildIndex);
 	}
 
-	void Update () 
+
+	void OnLevelWasLoaded(int sceneIndex)
 	{
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			AudioManager.instance.PlayMusic (mainTheme, 3);
+		string newSceneName = SceneManager.GetActiveScene().name;
+		if (newSceneName != sceneName)
+		{
+			sceneName = newSceneName;
+			Invoke("PlayMusic", .2f);
+		}
+	}
+
+	void PlayMusic()
+	{
+		AudioClip clipToPlay = null;
+
+		if (sceneName == "MenuScene")
+		{
+			clipToPlay = menuTheme;
+		}
+		else if (sceneName == "DemoLevel")
+		{
+			clipToPlay = mainTheme;
+		}
+		else if (sceneName == "GameOver")
+		{
+			clipToPlay = deathTheme;
 		}
 
-		
-	
+		if (clipToPlay != null)
+		{
+			AudioManager.instance.PlayMusic(clipToPlay, 0);
+			Invoke("PlayMusic", clipToPlay.length);
+		}
+
 	}
 }

@@ -14,6 +14,9 @@ public class PlayerAttack : MonoBehaviour
     public float attackRangeY = 0.2f;
     public int damage = 1;
 
+    //for sfx
+    public AudioClip attackAudio;
+
     void Start()
     {
         player_animator = GetComponent<Animator>();
@@ -24,6 +27,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && attackCooldown <=0)
         {
+            AudioManager.instance.PlaySound(attackAudio, transform.position);
             player_animator.SetTrigger("PlayerAttacked");
             Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackPos.position, new Vector2(attackRangeX, attackRangeY), 0, whatIsEnemy);
             for (int i = 0; i < enemiesToDamage.Length; i++)

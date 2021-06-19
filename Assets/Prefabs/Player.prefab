@@ -290,8 +290,10 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  isJumping: 0
   dashDistance: 5
   dashCooldownValue: 1
+  dashAudio: {fileID: 8300000, guid: 577ef70a993f9ee4c97d24d705bfe435, type: 3}
 --- !u!114 &5226494337722483316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,6 +357,7 @@ MonoBehaviour:
   attackRangeX: 2
   attackRangeY: 1
   damage: 1
+  attackAudio: {fileID: 8300000, guid: 81d0e5645ea244e409d276314752b737, type: 3}
 --- !u!1 &5226494338066536654
 GameObject:
   m_ObjectHideFlags: 0

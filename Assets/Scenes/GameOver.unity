@@ -342,7 +342,6 @@ GameObject:
   m_Component:
   - component: {fileID: 878858151}
   - component: {fileID: 878858150}
-  - component: {fileID: 878858149}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -350,14 +349,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &878858149
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 878858148}
-  m_Enabled: 1
 --- !u!20 &878858150
 Camera:
   m_ObjectHideFlags: 0
@@ -773,6 +764,95 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1595005257}
   m_CullTransparentMesh: 0
+--- !u!1001 &1615905566
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4586871748732572097, guid: 2d59382af45f79649962e7a5b66200b4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.7127534
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586871748732572097, guid: 2d59382af45f79649962e7a5b66200b4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.37804767
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586871748732572097, guid: 2d59382af45f79649962e7a5b66200b4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -546.3097
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586871748732572097, guid: 2d59382af45f79649962e7a5b66200b4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586871748732572097, guid: 2d59382af45f79649962e7a5b66200b4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586871748732572097, guid: 2d59382af45f79649962e7a5b66200b4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586871748732572097, guid: 2d59382af45f79649962e7a5b66200b4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586871748732572097, guid: 2d59382af45f79649962e7a5b66200b4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586871748732572097, guid: 2d59382af45f79649962e7a5b66200b4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586871748732572097, guid: 2d59382af45f79649962e7a5b66200b4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586871748732572097, guid: 2d59382af45f79649962e7a5b66200b4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586871748732572099, guid: 2d59382af45f79649962e7a5b66200b4,
+        type: 3}
+      propertyPath: m_Name
+      value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4586871748732572126, guid: 2d59382af45f79649962e7a5b66200b4,
+        type: 3}
+      propertyPath: menuTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: b1038dd5fe43bc345971227fd85c6866, type: 3}
+    - target: {fileID: 4586871748732572126, guid: 2d59382af45f79649962e7a5b66200b4,
+        type: 3}
+      propertyPath: mainTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: 6e7b60a2b0b71c3458a927fe9ea7f21d, type: 3}
+    - target: {fileID: 4586871748732572126, guid: 2d59382af45f79649962e7a5b66200b4,
+        type: 3}
+      propertyPath: DeathTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: bcb2ecf9f90ce5d4f9917d576e67b562, type: 3}
+    - target: {fileID: 4586871748732572126, guid: 2d59382af45f79649962e7a5b66200b4,
+        type: 3}
+      propertyPath: deathTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: 232c334b2e40a104c9adb47e04941ff2, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d59382af45f79649962e7a5b66200b4, type: 3}
 --- !u!1 &1746492206
 GameObject:
   m_ObjectHideFlags: 0
