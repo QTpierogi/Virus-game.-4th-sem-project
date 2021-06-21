@@ -106,7 +106,7 @@ public class AudioManager : MonoBehaviour
 	{
 		if (clip != null)
 		{
-			AudioSource.PlayClipAtPoint(clip, pos, 4000f);
+			AudioSource.PlayClipAtPoint(clip, pos, sfxVolumePercent * masterVolumePercent);
 		}
 	}
 

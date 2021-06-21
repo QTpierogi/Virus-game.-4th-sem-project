@@ -285,6 +285,7 @@ MonoBehaviour:
   jumpForce: 12.5
   jumpTime: 0.25
   extraJumpsValue: 2
+  extraJumps: 0
   feetPos: {fileID: 5226494338066536641}
   checkRadius: 0.5
   whatIsGround:
@@ -293,7 +294,7 @@ MonoBehaviour:
   isJumping: 0
   dashDistance: 5
   dashCooldownValue: 1
-  dashAudio: {fileID: 8300000, guid: 577ef70a993f9ee4c97d24d705bfe435, type: 3}
+  dashAudio: {fileID: 8300000, guid: 90f27c77405e3ae4f8de1bcff115e3f8, type: 3}
 --- !u!114 &5226494337722483316
 MonoBehaviour:
   m_ObjectHideFlags: 0
