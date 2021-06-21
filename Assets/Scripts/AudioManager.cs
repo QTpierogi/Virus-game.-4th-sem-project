@@ -19,7 +19,7 @@ public class AudioManager : MonoBehaviour
 	public static AudioManager instance;
 
 	Transform audioListener;
-	Transform playerT;
+	public Transform playerT;
 
 	SoundLibrary library;
 
@@ -46,10 +46,7 @@ public class AudioManager : MonoBehaviour
 			}
 
 			audioListener = FindObjectOfType<AudioListener>().transform;
-			if (FindObjectOfType<PlayerMovement>() != null)
-			{
-				playerT = FindObjectOfType<PlayerMovement>().transform;
-			}
+			
 
 			masterVolumePercent = PlayerPrefs.GetFloat("master vol", 1);
 			sfxVolumePercent = PlayerPrefs.GetFloat("sfx vol", 1);
@@ -59,7 +56,11 @@ public class AudioManager : MonoBehaviour
 
 	void Update()
 	{
-		if (playerT != null)
+        if (FindObjectOfType<PlayerMovement>() != null)
+        {
+            playerT = FindObjectOfType<PlayerMovement>().transform;
+        }
+        if (playerT != null)
 		{
 			audioListener.position = playerT.position;
 		}

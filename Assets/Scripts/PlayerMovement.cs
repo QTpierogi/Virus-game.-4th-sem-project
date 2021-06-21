@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private float jumpTimeCounter;
     public float jumpTime = 0.2f;
     public int extraJumpsValue = 2;
-    private int extraJumps;
+    public int extraJumps;
     public Transform feetPos;
     public float checkRadius;
     public LayerMask whatIsGround;
@@ -58,21 +58,21 @@ public class PlayerMovement : MonoBehaviour
             Flip();
 
         bool grounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
+        if (isJumping)
+            grounded = false;
 
         HandleDash();
 
         if (grounded)
             extraJumps = extraJumpsValue;
-        else if (extraJumps == extraJumpsValue)
-            extraJumps = 0;
-        if ((extraJumps > 0) && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
+        if ((extraJumps > 0) && !isJumping && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
             virus_body.velocity = Vector2.up * jumpForce;
             isJumping = true;
             jumpTimeCounter = jumpTime;
             extraJumps--;
         }
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && isJumping)
         {
             if (jumpTimeCounter > 0)
             {

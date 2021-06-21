@@ -5,11 +5,11 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     public int health;
-    private BoxCollider2D enemy_box;
+    public BoxCollider2D enemy_box;
     public float dazeTime;
     public float startDazeTime;
 
-    private Animator enemy_animator;
+    public Animator enemy_animator;
 
     protected virtual void Awake()
     {
