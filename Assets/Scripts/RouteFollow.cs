@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class RouteFollow : MonoBehaviour
@@ -19,7 +20,7 @@ public class RouteFollow : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {     
         routeToGo = 0;
         tParam = 0f;
         speedModifier = 0.3f;

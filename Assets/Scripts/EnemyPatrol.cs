@@ -92,7 +92,12 @@ public class EnemyPatrol : Enemy
 
     void GetAngry()
     {
-        currentSpeed = speed * 2;
+        if (dazeTime > 0)
+        {
+            currentSpeed = 0;
+            dazeTime -= Time.deltaTime;
+        }
+        else currentSpeed = speed * 2;
         transform.position = Vector2.MoveTowards(transform.position, player.position, currentSpeed * Time.deltaTime);
         if (transform.position.x > player.position.x)
         {
