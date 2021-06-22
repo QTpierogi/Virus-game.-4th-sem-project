@@ -9,6 +9,7 @@ public class MusicManager : MonoBehaviour
 	public AudioClip menuTheme;
 	public AudioClip mainTheme;
 	public AudioClip deathTheme;
+	public AudioClip bossTheme;
 
 	string sceneName;
 
@@ -39,6 +40,10 @@ public class MusicManager : MonoBehaviour
 		else if (sceneName == "DemoLevel")
 		{
 			clipToPlay = mainTheme;
+		}
+		else if (sceneName == "BossRoom")
+		{
+			clipToPlay = bossTheme;
 		}
 		else if (sceneName == "GameOver")
 		{

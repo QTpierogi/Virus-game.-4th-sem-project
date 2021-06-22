@@ -21,7 +21,7 @@ TagManager:
   - Ground
   - Enemy
   - Player
-  - 
+  - Health
   - 
   - 
   - 
@@ -45,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: New Layer
+    uniqueID: 903137227
     locked: 0

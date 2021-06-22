@@ -851,6 +851,11 @@ PrefabInstance:
       propertyPath: deathTheme
       value: 
       objectReference: {fileID: 8300000, guid: 232c334b2e40a104c9adb47e04941ff2, type: 3}
+    - target: {fileID: 4586871748732572126, guid: 2d59382af45f79649962e7a5b66200b4,
+        type: 3}
+      propertyPath: bossTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a507df9c2af0b04aabd0c184945c15e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d59382af45f79649962e7a5b66200b4, type: 3}
 --- !u!1 &1746492206

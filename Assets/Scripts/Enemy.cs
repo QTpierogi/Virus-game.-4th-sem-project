@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -10,6 +11,21 @@ public abstract class Enemy : MonoBehaviour
     public float startDazeTime;
 
     public Animator enemy_animator;
+
+    public BossHP healthBar;
+
+    public static Enemy Instance { get; set; }
+    public bool bossDead = false;
+
+    void Start()
+    {
+        Instance = this;
+
+        if (SceneManager.GetActiveScene().name == "BossRoom")
+        {
+            healthBar.SetMaxHealth(health);
+        }
+    }
 
     protected virtual void Awake()
     {
@@ -37,6 +53,16 @@ public abstract class Enemy : MonoBehaviour
         health -= dealtDamage;
         if (health < 1)
             Die();
+
+        if (SceneManager.GetActiveScene().name == "BossRoom" && health < 1)
+        {
+            bossDead = true;
+        }
+
+        if (SceneManager.GetActiveScene().name == "BossRoom")
+        {
+            healthBar.SetHealth(health);
+        }
     }
 
     protected void Die()
